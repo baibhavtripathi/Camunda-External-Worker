@@ -1,0 +1,21 @@
+camunda.bpm:
+  admin-user:
+    id: demo
+    password: demo
+  client:
+    base-url: http://localhost:8080/engine-rest # The URL pointing to the Camunda Platform Runtime REST API
+    async-response-timeout: 1000 # Defines the maximum duration of the long-polling request
+    worker-id: spring-boot-client # Identifies the worker towards the Engine
+    #      basic-auth: # Configure if REST API is secured with basic authentication
+    #        username: my-username
+    #        password: my-password
+    subscriptions:
+      sayMyName: # This topic name must match the respective `@ExternalTaskSubscription`
+        process-definition-key: test_worker
+        auto-open: false
+        variable-names: myName
+
+logging.level.org.camunda.bpm.client: info
+
+server:
+  port: 8097
